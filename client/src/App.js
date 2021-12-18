@@ -2,9 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { render } from '@testing-library/react';
 import { Component } from 'react/cjs/react.production.min';
-
 import Customer from './components/Customer'
-
 import { withStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
@@ -18,40 +16,29 @@ const styles = theme=> ({
     width: '100%',
     marginTop: theme.spacing.unit *3,
     overflowX: "auto"
-  },
-  table: {
-    minWidth:1000
-  }
-})
+  }, table: { minWidth:1000 } }) 
+  
+  
+  class App extends Component 
+  { 
+    state = { customers: "" } 
+    
+    
+    
+    componentDidMount() { 
+      this.callApi() 
+          .then ( res => this.setState({customers:res})) 
+          .catch(err=>console.log(err)); 
+    }
 
-const customers =[ {
-  'id' : 1, 
-  'image' : 'https://placeimg.com/64/64/1',
-  'name': '홍길동',
-  'birthday': '962223',
-  'gender': '남자',
-  'job' : '대학생  '
-},
-{
-  'id' : 2, 
-  'image' : 'https://placeimg.com/64/64/xi2',
-  'name': '신희운',
-  'birthday': '962223',
-  'gender': '남자',
-  'job' : '개발자   '
-},
-{
-  'id' : 3, 
-  'image' : 'https://placeimg.com/64/64/3',
-  'name': '지유나',
-  'birthday': '962223',
-  'gender': '남자',
-  'job' : '가정주부 '
-}
+    callApi = async() => {
+      const response = await fetch('/api/customers' );
+      const body = await response.json();
 
-]
 
-class App extends Component {
+      return body;
+
+    }
 
   render() {
 
@@ -59,8 +46,6 @@ class App extends Component {
     return (
       <Paper className = {classes.root} >
       <Table className ={classes.table} >
-
-
 
         <TableHead>
                   <TableCell> 번호 </TableCell>
@@ -72,21 +57,18 @@ class App extends Component {
 
         </TableHead>
 
-
         <TableBody>
-         { customers.map( c => {
+         {  this.state.customers ? this.state.customers.map( c => {
             return ( 
               <Customer
               key = { c.key}  id={ c.id } image={c.image} name={ c.name }
-              birthday={c.birthday} gender={ c.gender} 
-              job={ c.job}
+              birthday={c.birthday} gender={ c.gender} job={c.job}
               /> 
             )
-          })}
+          })  : ""
+         }
         </TableBody>
-
          </Table>
-
       </Paper>
     )
   }
