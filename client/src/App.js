@@ -58,7 +58,10 @@ class App extends Component {
     const { classes} = this.props;
     return (
       <Paper className = {classes.root} >
-      <Table className ={classes.table}>
+      <Table className ={classes.table} >
+
+
+
         <TableHead>
                   <TableCell> 번호 </TableCell>
                   <TableCell> 이미지 </TableCell>
