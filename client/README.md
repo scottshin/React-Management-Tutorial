@@ -1,5 +1,14 @@
+
+
+./npm i
+./npm install -g yarn npm install react-scripts@latest
+
+
+
+
+
 ## Management system
-ㅂㅗㄴ ㅍㅡㄹ젝트는 react 강의 목적으로만들어진 고객 관리 시스템 
+ react 강의 목적으로만들어진 고객 관리 시스템 
 입니다. 
 
 
