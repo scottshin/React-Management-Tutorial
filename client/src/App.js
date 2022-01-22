@@ -31,13 +31,12 @@ const styles = theme=> ({
           .catch(err=>console.log(err)); 
     }
 
+
+    //서버에서 데이타를 갖고 옴 
     callApi = async() => {
       const response = await fetch('/api/customers' );
       const body = await response.json();
-
-
       return body;
-
     }
 
   render() {
