@@ -6,12 +6,11 @@ node.js express server ( web server )
 
 
 npm install -g yarn 
+
 npm install react-scripts@latest
+
+
 npm install nodemon --save-dev
-
-npm i react-scripts
-
-
 
 
 
