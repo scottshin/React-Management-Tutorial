@@ -60,3 +60,16 @@ npm install nodemon --save-dev
 
 10강. 
 https://www.youtube.com/watch?v=G6O-u6FkjpY&t=196s
+
+
+
+
+
+# api 
+
+localhost:3000/api/movies
+
+localhost:3000/api/radio
+
+
+
