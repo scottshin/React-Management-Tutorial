@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router();
 const MovieCtrl = require('../controllers/movie.ctrl');
+const RadioCtrl = require('../controllers/radio.ctrl');
 
+//import axios from "axios"
+const axios = require('axios')
 
 router.get('/', (req, res)=>
 {
@@ -13,8 +16,35 @@ router.use('/hello', (req, res) => {
 })
 
 router.use('/bye', (req, res)=> {
-  res.status(200).json({msg: "bye" });
+
+  // res.status(200).json({msg: "bye" });
+    axios.get( 'https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=24', 
+    {
+        data: {name: 'channelList'}
+    } )
+  .then((Response)=>{
+    console.log(Response.data)
+
+    // const data = Response.data;
+
+  })
+  .catch((Error)=>{console.log(Error)})
+
+
+  // axios 
+  // const option = 
+  // { url = 'https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=24',
+  //   method:'POST', 
+  //   header: { 'Accept':'application/json', 'Content-Type': 'application/json' }, 
+  //   data: { name: 'server_url' } 
+  // };
+
+  //   axios(options).get( option.url ).then(response => console.log(response)) 
+
+
 })
+
+
 
 
 
@@ -23,6 +53,10 @@ router.get('/movies', MovieCtrl.getMovies );
 router.post('/movies', MovieCtrl.postMovies );
 router.put('/movies', MovieCtrl.putMovies );
 router.delete('/movies', MovieCtrl.deleteMovies );
+
+router.get('/radio', RadioCtrl.getRadio );
+
+
 
 
 router.get('/customers', (req,res) => {
